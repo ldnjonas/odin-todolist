@@ -46,3 +46,13 @@ let toogleEntryStatus = (projectTitle,todoTitle) => {
         todoEntry = true
     }
 }
+
+let updateTodoEntry = (todoEntry,title,description,dueDate,priority,notes,checklist,status) => {
+    todoEntry.title = title
+    todoEntry.description = description
+    todoEntry.dueDate = dueDate
+    todoEntry.priority = priority
+    todoEntry.notes = notes
+    todoEntry.checklist = checklist
+    todoEntry.status = status
+}
