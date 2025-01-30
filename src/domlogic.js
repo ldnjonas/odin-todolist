@@ -1,4 +1,4 @@
-export {addProjectToDom,addTodoToDom};
+export {addProjectToDom,addTodoToDom,showUpdateForm};
 
 
 let addProjectToDom = (project) => {
@@ -28,7 +28,7 @@ let addTodoToDom = (project,todoEntry) => {
     }
     let updateInfoButton = document.createElement("Button")
     updateInfoButton.textContent = "Update"
-    updateInfoButton.addEventListener("click", () => {alert("Update")})
+    updateInfoButton.addEventListener("click", () => {showUpdateForm()})
     div.appendChild(updateInfoButton)
 
     let deleteButton = document.createElement("Button")
@@ -41,3 +41,12 @@ let removeDivFromDOM = (divID) => {
     let div = document.querySelector("#"+divID)
     div.remove()
 }
+
+let showUpdateForm = () => {
+    let form =  document.querySelector("form")
+    form.style.position="absolute"
+    form.style.left="50%"
+    form.style.top="50%"
+    form.style.display="block"
+}
+
