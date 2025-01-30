@@ -60,8 +60,17 @@ let updateTodoEntry = (todoEntry,title,description,dueDate,priority,notes,checkl
 }
 
 let project = createInitalDefaultProject()
+let project2 = createProject("project2")
 let todoEntry = createTodoEntry("title","desc","dueDate","prio","notes","checklist",false)
 let todoEntry2 = createTodoEntry("title","2","dueDate","prio","notes","checklist",false)
 let todoEntry3 = createTodoEntry("title","3","dueDate","prio","notes","checklist",false)
 
 
+addTodoEntryToContentArray(project,todoEntry)
+//addTodoEntryToContentArray(project,todoEntry2)
+//addTodoEntryToContentArray(project,todoEntry3)
+addProjectToDom(project)
+addProjectToDom(project2)
+addTodoToDom(project,todoEntry)
+addTodoToDom(project2,todoEntry2)
+addTodoToDom(project2,todoEntry3)
