@@ -15,8 +15,8 @@ let addProjectToArray = (project) => {
 
 let projectArray = []
 
-let createTodoEntry = (title,description,dueDate,priority,notes,checklist) => {
-    return{title,description,dueDate,priority,notes,checklist}
+let createTodoEntry = (title,description,dueDate,priority,notes,checklist,status) => {
+    return{title,description,dueDate,priority,notes,checklist,status}
 }
 
 let addTodoEntryToContentArray = (project,entry) => {
@@ -38,3 +38,11 @@ let getTodoByTitle = (project,todoTitle) => {
     }
 }
 
+let toogleEntryStatus = (projectTitle,todoTitle) => {
+    let todoEntry = getTodoByTitle(getProjectByTitle(projectTitle),todoTitle)
+    if(todoEntry){
+        todoEntry = false
+    }else{
+        todoEntry = true
+    }
+}
