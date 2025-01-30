@@ -1,5 +1,5 @@
 import "./style.css";
-import {addProjectToDom} from "./domlogic.js";
+import {addProjectToDom, addTodoToDom} from "./domlogic.js";
 
 let createInitalDefaultProject = () => {
     let project = createProject("Default")
@@ -60,5 +60,8 @@ let updateTodoEntry = (todoEntry,title,description,dueDate,priority,notes,checkl
 }
 
 let project = createInitalDefaultProject()
-console.log(project)
-addProjectToDom(project)
+let todoEntry = createTodoEntry("title","desc","dueDate","prio","notes","checklist",false)
+let todoEntry2 = createTodoEntry("title","2","dueDate","prio","notes","checklist",false)
+let todoEntry3 = createTodoEntry("title","3","dueDate","prio","notes","checklist",false)
+
+
