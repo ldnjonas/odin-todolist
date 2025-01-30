@@ -1,8 +1,12 @@
 import "./style.css";
 
+let createInitalDefaultProject = () => {
+    let project = createProject("Default")
+    project.default = true 
+}
 
 let createProject = (title) => {
-    return {title,projectContentArray:[]}
+    let project = {title,default:false,projectContentArray:[]}
 }
 
 let addProjectToArray = (project) => {
@@ -34,12 +38,3 @@ let getTodoByTitle = (project,todoTitle) => {
     }
 }
 
-let p1 = createProject("Project1")
-addProjectToArray(p1)
-let entry = createTodoEntry("Entry1","descripton","1.1.2025","high","notes","checklist")
-p1.projectContentArray.push(entry)
-addTodoEntryToContentArray(p1,entry)
-console.log(getProjectByTitle("Project1"))
-console.log( p1 === getProjectByTitle("Project1"))
-
-console.log(p1.projectContentArray[0] === getTodoByTitle(p1,"Entry1"))
