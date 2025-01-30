@@ -1,6 +1,6 @@
 import "./style.css";
 import {addProjectToDom, addTodoToDom,showForm} from "./domlogic.js";
-
+export {updateTodoEntryData}
 let createInitalDefaultProject = () => {
     let project = createProject("Default")
     project.default = true 
@@ -8,7 +8,7 @@ let createInitalDefaultProject = () => {
 }
 
 let createProject = (title) => {
-    return {title,default:false,projectContentArray:[]}
+    return {title,default:false,projectContentArray:[],projectId:projectIdCounter++}
 }
 
 let addProjectToArray = (project) => {
@@ -16,9 +16,11 @@ let addProjectToArray = (project) => {
 }
 
 let projectArray = []
+let entryIdCounter = 0
+let projectIdCounter = 0
 
 let createTodoEntry = (title,description,dueDate,priority,notes,checklist,status) => {
-    return{title,description,dueDate,priority,notes,checklist,status}
+    return{title,description,dueDate,priority,notes,checklist,status,entryId:entryIdCounter++}
 }
 
 let addTodoEntryToContentArray = (project,entry) => {
@@ -49,20 +51,18 @@ let toogleEntryStatus = (projectTitle,todoTitle) => {
     }
 }
 
-let updateTodoEntry = (todoEntry,title,description,dueDate,priority,notes,checklist,status) => {
-    todoEntry.title = title
-    todoEntry.description = description
-    todoEntry.dueDate = dueDate
-    todoEntry.priority = priority
-    todoEntry.notes = notes
-    todoEntry.checklist = checklist
-    todoEntry.status = status
+let updateTodoEntryData = (todoEntry) => {
+    let form =  document.querySelector("form")
+    todoEntry.title = form.title.value
+    todoEntry.description = form.description.value
+    todoEntry.dueDate = form.duedate.value
+    todoEntry.priority = form.priority.value
+    todoEntry.notes = form.notes.value
+    todoEntry.checklist = form.checklist.value
+    todoEntry.status = form.status.value
 }
 
-let generateUpdateForm = () => {
-    
 
-}
 
 
 let project = createInitalDefaultProject()
@@ -76,7 +76,7 @@ addTodoEntryToContentArray(project,todoEntry)
 //addTodoEntryToContentArray(project,todoEntry2)
 //addTodoEntryToContentArray(project,todoEntry3)
 addProjectToDom(project)
-addProjectToDom(project2)
+//addProjectToDom(project2)
 addTodoToDom(project,todoEntry)
-addTodoToDom(project2,todoEntry2)
-addTodoToDom(project2,todoEntry3)
+//addTodoToDom(project2,todoEntry2)
+//addTodoToDom(project2,todoEntry3)
