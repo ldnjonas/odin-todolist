@@ -5,3 +5,8 @@
 form{
     display: none;
 }
+
+#project-container{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+}
