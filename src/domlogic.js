@@ -19,7 +19,7 @@ let addTodoToDom = (project,todoEntry) => {
     let projectContainerItem = document.querySelector(".project-"+project.projectId)
     let div = document.createElement("div")
     div.classList.add("todoEntry")
-    div.id = todoEntry.entryId
+    div.id = "entry"+todoEntry.entryId
     projectContainerItem.appendChild(div)
     let fieldId = 0
     for(let property in todoEntry){
@@ -41,7 +41,7 @@ let addTodoToDom = (project,todoEntry) => {
 }
 
 let removeDivFromDOM = (divID) => {
-    let div = document.querySelector("#"+divID)
+    let div = document.querySelector("#entry"+divID)
     div.remove()
 }
 
@@ -59,7 +59,7 @@ let createUpdateForm = (todoEntry) => {
     
     form.title.value = todoEntry.title
     form.description.value = todoEntry.description
-    form.duedate.value = todoEntry.duedate
+    form.dueDate.value = todoEntry.dueDate
     form.priority.value = todoEntry.priority
     form.notes.value = todoEntry.notes
     form.checklist.value = todoEntry.checklist

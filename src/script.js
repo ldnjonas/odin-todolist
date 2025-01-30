@@ -55,7 +55,7 @@ let updateTodoEntryData = (todoEntry) => {
     let form =  document.querySelector("form")
     todoEntry.title = form.title.value
     todoEntry.description = form.description.value
-    todoEntry.dueDate = form.duedate.value
+    todoEntry.dueDate = form.dueDate.value
     todoEntry.priority = form.priority.value
     todoEntry.notes = form.notes.value
     todoEntry.checklist = form.checklist.value
@@ -73,10 +73,10 @@ let todoEntry3 = createTodoEntry("title","3","dueDate","prio","notes","checklist
 
 
 addTodoEntryToContentArray(project,todoEntry)
-//addTodoEntryToContentArray(project,todoEntry2)
-//addTodoEntryToContentArray(project,todoEntry3)
+addTodoEntryToContentArray(project,todoEntry2)
+addTodoEntryToContentArray(project,todoEntry3)
 addProjectToDom(project)
 //addProjectToDom(project2)
 addTodoToDom(project,todoEntry)
-//addTodoToDom(project2,todoEntry2)
-//addTodoToDom(project2,todoEntry3)
+addTodoToDom(project,todoEntry2)
+addTodoToDom(project,todoEntry3)
