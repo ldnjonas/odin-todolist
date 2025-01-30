@@ -1,12 +1,14 @@
 import "./style.css";
+import {addProjectToDom} from "./domlogic.js";
 
 let createInitalDefaultProject = () => {
     let project = createProject("Default")
     project.default = true 
+    return project
 }
 
 let createProject = (title) => {
-    let project = {title,default:false,projectContentArray:[]}
+    return {title,default:false,projectContentArray:[]}
 }
 
 let addProjectToArray = (project) => {
@@ -56,3 +58,7 @@ let updateTodoEntry = (todoEntry,title,description,dueDate,priority,notes,checkl
     todoEntry.checklist = checklist
     todoEntry.status = status
 }
+
+let project = createInitalDefaultProject()
+console.log(project)
+addProjectToDom(project)
