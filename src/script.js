@@ -19,8 +19,8 @@ let projectArray = []
 let entryIdCounter = 0
 let projectIdCounter = 0
 
-let createTodoEntry = (title,description,dueDate,priority,notes,checklist,status) => {
-    return{title,description,dueDate,priority,notes,checklist,status,entryId:entryIdCounter++}
+let createTodoEntry = (title,dueDate,description,priority,notes,checklist,status) => {
+    return{title,dueDate,description,priority,notes,checklist,status,entryId:entryIdCounter++}
 }
 
 let addTodoEntryToContentArray = (project,entry) => {
@@ -54,8 +54,8 @@ let toogleEntryStatus = (projectTitle,todoTitle) => {
 let updateTodoEntryData = (todoEntry) => {
     let form =  document.querySelector("form")
     todoEntry.title = form.title.value
-    todoEntry.description = form.description.value
     todoEntry.dueDate = form.dueDate.value
+    todoEntry.description = form.description.value
     todoEntry.priority = form.priority.value
     todoEntry.notes = form.notes.value
     todoEntry.checklist = form.checklist.value
