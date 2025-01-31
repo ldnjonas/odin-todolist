@@ -1,4 +1,4 @@
-import {updateTodoEntryData} from "./script.js";
+import {updateTodoEntryData,createTodoEntryViaForm} from "./script.js";
 export {addProjectToDom,addTodoToDom,toggleFormVisibility};
 
 
@@ -12,7 +12,12 @@ let addProjectToDom = (project) => {
     p.textContent = project.title
 
     projectContainer.appendChild(div)
-    div.appendChild(p)    
+    div.appendChild(p)
+    let addTodoButton = document.createElement("button")
+    addTodoButton.classList.add("add-todo-btn")
+    addTodoButton.textContent = "Add new Todo"
+    addTodoButton.addEventListener("click", () => {createNewTodoEntryForm(project)})
+    div.append(addTodoButton)
 }
 
 let addTodoToDom = (project,todoEntry) => {
@@ -20,7 +25,11 @@ let addTodoToDom = (project,todoEntry) => {
     let div = document.createElement("div")
     div.classList.add("todoEntry")
     div.id = "entry"+todoEntry.entryId
-    projectContainerItem.appendChild(div)
+
+    let addNewTodoBtn = document.querySelector(".project-"+project.projectId+" > .add-todo-btn")
+
+    projectContainerItem.insertBefore(div,addNewTodoBtn)
+    //projectContainerItem.appendChild(div)
     let fieldId = 0
     
     // for(let property in todoEntry){
@@ -35,7 +44,7 @@ let addTodoToDom = (project,todoEntry) => {
     upperContentPart.classList.add("upper-content-part")
     let bottomContentPart = document.createElement("div")
     bottomContentPart.classList.add("bottom-content-part")
-
+    bottomContentPart.style.display = "none"
     div.append(upperContentPart)
     div.append(bottomContentPart)
     for(let property in todoEntry){
@@ -119,6 +128,29 @@ let updateTodoOnDOM = (todoEntry) => {
         p.textContent = `${property}: ${todoEntry[property]}`
     }
 }
+
+let createNewTodoEntryForm = (project) =>{
+    let form =  document.querySelector("form")
+    let newTodoEntry = createTodoEntryViaForm()
+    console.log(newTodoEntry.entryId)
+    form.title.value = ""
+    form.dueDate.value = ""
+    form.description.value = ""
+    form.priority.value = ""
+    form.notes.value = ""
+    form.checklist.value = ""
+    form.status.value = ""
+    toggleFormVisibility()
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        updateTodoEntryData(newTodoEntry)
+        addTodoToDom(project,newTodoEntry)
+        console.log(newTodoEntry.title)
+        console.log("hier")
+        toggleFormVisibility()
+        },{ once: true })
+}
+
 
 
 

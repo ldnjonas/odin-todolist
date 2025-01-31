@@ -1,6 +1,6 @@
 import "./style.css";
 import {addProjectToDom, addTodoToDom,showForm} from "./domlogic.js";
-export {updateTodoEntryData}
+export {updateTodoEntryData,createTodoEntryViaForm}
 let createInitalDefaultProject = () => {
     let project = createProject("Default")
     project.default = true 
@@ -60,6 +60,14 @@ let updateTodoEntryData = (todoEntry) => {
     todoEntry.notes = form.notes.value
     todoEntry.checklist = form.checklist.value
     todoEntry.status = form.status.value
+}
+
+let createTodoEntryViaForm = () => {
+    let newTodoEntry = createTodoEntry()
+    newTodoEntry.entryId = entryIdCounter++
+    console.log(newTodoEntry)
+    console.log(newTodoEntry.entryId)
+    return newTodoEntry
 }
 
 
