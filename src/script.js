@@ -88,10 +88,5 @@ let todoEntry = createTodoEntry("title","desc","dueDate","prio","notes","checkli
 let todoEntry2 = createTodoEntry("title","2","dueDate","prio","notes","checklist",false)
 let todoEntry3 = createTodoEntry("title","3","dueDate","prio","notes","checklist",false)
 
-addTodoEntryToContentArray(project,todoEntry)
-addTodoEntryToContentArray(project,todoEntry2)
-addTodoEntryToContentArray(project,todoEntry3)
-addProjectToDom(project)
-addTodoToDom(project,todoEntry)
-addTodoToDom(project,todoEntry2)
-addTodoToDom(project2,todoEntry3)
+
+
