@@ -1,6 +1,6 @@
 import "./style.css";
-import {addProjectToDom, addTodoToDom,showForm} from "./domlogic.js";
-export {updateTodoEntryData,createTodoEntryViaForm}
+import {addProjectToDom, addTodoToDom,showForm,createInitialUI} from "./domlogic.js";
+export {updateTodoEntryData,createTodoEntryViaForm,getProjectFormData,getProjectIdCounter}
 let createInitalDefaultProject = () => {
     let project = createProject("Default")
     project.default = true 
@@ -18,6 +18,10 @@ let addProjectToArray = (project) => {
 let projectArray = []
 let entryIdCounter = 0
 let projectIdCounter = 0
+
+let getProjectIdCounter = () => {
+    return projectIdCounter
+}
 
 let createTodoEntry = (title,dueDate,description,priority,notes,checklist,status) => {
     return{title,dueDate,description,priority,notes,checklist,status,entryId:entryIdCounter++}
@@ -70,21 +74,24 @@ let createTodoEntryViaForm = () => {
     return newTodoEntry
 }
 
+let getProjectFormData = () => {
+    let projectForm = document.querySelector("#add-new-project-form")
+    return createProject(projectForm.title.value)
+}
+
+createInitialUI()
 
 
-
-let project = createInitalDefaultProject()
-let project2 = createProject("project2")
+//let project = createInitalDefaultProject()
+//let project2 = createProject("project2")
 let todoEntry = createTodoEntry("title","desc","dueDate","prio","notes","checklist",false)
 let todoEntry2 = createTodoEntry("title","2","dueDate","prio","notes","checklist",false)
 let todoEntry3 = createTodoEntry("title","3","dueDate","prio","notes","checklist",false)
-
 
 addTodoEntryToContentArray(project,todoEntry)
 addTodoEntryToContentArray(project,todoEntry2)
 addTodoEntryToContentArray(project,todoEntry3)
 addProjectToDom(project)
-addProjectToDom(project2)
 addTodoToDom(project,todoEntry)
 addTodoToDom(project,todoEntry2)
 addTodoToDom(project2,todoEntry3)

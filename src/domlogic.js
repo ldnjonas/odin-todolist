@@ -1,11 +1,13 @@
-import {updateTodoEntryData,createTodoEntryViaForm} from "./script.js";
-export {addProjectToDom,addTodoToDom,toggleFormVisibility};
+import {updateTodoEntryData,createTodoEntryViaForm,createProject,getProjectFormData,getProjectIdCounter} from "./script.js";
+export {addProjectToDom,addTodoToDom,toggleFormVisibility,createInitialUI};
 
 
 let addProjectToDom = (project) => {
     let projectContainer = document.querySelector("#project-container")
     let div = document.createElement("div")
 
+    let projectId = getProjectIdCounter()
+    if(projectId<=5){projectContainer.style.gridTemplateColumns = "repeat("+projectId+",1fr)"}
     div.classList.add("project-"+project.projectId)
     
     let p = document.createElement("p")
@@ -90,6 +92,12 @@ let toggleFormVisibility = () => {
  
 }
 
+let toggleProjectFormVisibility = () => {
+    let form = document.querySelector("#add-new-project-form")
+    form.style.display==="block" ? form.style.display="none":form.style.display="block"
+}
+
+
 let toggleFullTodoVisibility = (todoEntryId) => {
     let bottomContentPart = document.querySelector("#entry"+todoEntryId+" > .bottom-content-part")
     bottomContentPart.style.display==="none" ? bottomContentPart.style.display = "flow" : bottomContentPart.style.display="none"
@@ -149,6 +157,18 @@ let createNewTodoEntryForm = (project) =>{
         console.log("hier")
         toggleFormVisibility()
         },{ once: true })
+}
+
+let createInitialUI = () => {
+    let projectForm = document.querySelector("#add-new-project-form")
+    let addNewProjectButton = document.querySelector("#add-new-project-btn")
+    addNewProjectButton.addEventListener("click",() => {toggleProjectFormVisibility()})
+    projectForm.addEventListener("submit", (event) => {
+        addProjectToDom(getProjectFormData())
+        toggleProjectFormVisibility()
+        projectForm.title.value=""
+        event.preventDefault();
+    },)
 }
 
 
