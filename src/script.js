@@ -8,16 +8,21 @@ let createInitalDefaultProject = () => {
 }
 
 let createProject = (title) => {
-    return {title,default:false,projectContentArray:[],projectId:projectIdCounter++}
+    let project = {title,default:false,projectContentArray:[],projectId:projectIdCounter}
+    addProjectToArray(project)
+    
+    return project
 }
 
 let addProjectToArray = (project) => {
     projectArray.push(project)
+    projectIdCounter++
+    savePageContent()
 }
 
 let projectArray = []
 let entryIdCounter = 0
-let projectIdCounter = 0
+let projectIdCounter = projectArray.length
 
 let getProjectIdCounter = () => {
     return projectIdCounter
@@ -29,6 +34,7 @@ let createTodoEntry = (title,dueDate,description,priority,notes,checklist,status
 
 let addTodoEntryToContentArray = (project,entry) => {
     project.projectContentArray.push(entry)
+    savePageContent()
 }
 
 let getProjectByTitle = (projectTitle) => {
@@ -64,10 +70,12 @@ let updateTodoEntryData = (todoEntry) => {
     todoEntry.notes = form.notes.value
     todoEntry.checklist = form.checklist.value
     todoEntry.status = form.status.value
+    savePageContent()
 }
 
-let createTodoEntryViaForm = () => {
+let createTodoEntryViaForm = (project) => {
     let newTodoEntry = createTodoEntry()
+    addTodoEntryToContentArray(project,newTodoEntry)
     newTodoEntry.entryId = entryIdCounter++
     console.log(newTodoEntry)
     console.log(newTodoEntry.entryId)
@@ -79,14 +87,28 @@ let getProjectFormData = () => {
     return createProject(projectForm.title.value)
 }
 
+let savePageContent = () => {
+    localStorage.setItem("projectArray",JSON.stringify(projectArray))
+}
+
+
+
+let restorePageContent = () => { 
+    let pageContent = localStorage.getItem("projectArray")
+    let encodedData = JSON.parse(pageContent)
+    for (let project of encodedData){
+    addProjectToArray(project)
+    addProjectToDom(project)
+    }
+    for (let project of encodedData){
+        for (let projectContentArray of project.projectContentArray){
+            addTodoToDom(project,projectContentArray)
+        }
+    }
+    
+}
+
+
 createInitialUI()
-
-
-//let project = createInitalDefaultProject()
-//let project2 = createProject("project2")
-let todoEntry = createTodoEntry("title","desc","dueDate","prio","notes","checklist",false)
-let todoEntry2 = createTodoEntry("title","2","dueDate","prio","notes","checklist",false)
-let todoEntry3 = createTodoEntry("title","3","dueDate","prio","notes","checklist",false)
-
-
+restorePageContent()
 

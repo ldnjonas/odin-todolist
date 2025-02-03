@@ -20,6 +20,7 @@ let addProjectToDom = (project) => {
     addTodoButton.textContent = "Add new Todo"
     addTodoButton.addEventListener("click", () => {createNewTodoEntryForm(project)})
     div.append(addTodoButton)
+    
 }
 
 let addTodoToDom = (project,todoEntry) => {
@@ -139,7 +140,7 @@ let updateTodoOnDOM = (todoEntry) => {
 
 let createNewTodoEntryForm = (project) =>{
     let form =  document.querySelector("form")
-    let newTodoEntry = createTodoEntryViaForm()
+    let newTodoEntry = createTodoEntryViaForm(project)
     console.log(newTodoEntry.entryId)
     form.title.value = ""
     form.dueDate.value = ""
