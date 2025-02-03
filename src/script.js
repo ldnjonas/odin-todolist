@@ -1,14 +1,9 @@
 import "./style.css";
 import {addProjectToDom, addTodoToDom,showForm,createInitialUI} from "./domlogic.js";
 export {updateTodoEntryData,createTodoEntryViaForm,getProjectFormData,getProjectIdCounter,removeEntryFromArray,removeProjectFromArray}
-let createInitalDefaultProject = () => {
-    let project = createProject("Default")
-    project.default = true 
-    return project
-}
 
-let createProject = (title) => {
-    let project = {title,default:false,projectContentArray:[],projectId:projectIdCounter}
+let createProject = (title,backgroundColor) => {
+    let project = {title,default:false,projectContentArray:[],projectId:projectIdCounter,backgroundColor}
     addProjectToArray(project)
     
     return project
@@ -84,7 +79,7 @@ let createTodoEntryViaForm = (project) => {
 
 let getProjectFormData = () => {
     let projectForm = document.querySelector("#add-new-project-form")
-    return createProject(projectForm.title.value)
+    return createProject(projectForm.title.value,projectForm.backgroundColor.value)
 }
 
 let removeEntryFromArray = (project,todoEntry) => {

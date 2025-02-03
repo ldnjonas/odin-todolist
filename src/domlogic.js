@@ -27,6 +27,11 @@ let addProjectToDom = (project) => {
     removeProjectButton.addEventListener("click", () => {removeProjectFromDom(project)})
     div.append(removeProjectButton)
 
+    div.style.backgroundColor = project.backgroundColor
+    div.style.margin = "10px"
+    div.style.padding = "10px"
+    div.style.borderRadius = "5px"
+
     
 }
 
@@ -34,7 +39,7 @@ let removeProjectFromDom = (project) => {
     let projectOnDom = document.querySelector(".project-"+project.projectId)
     projectOnDom.remove()
     removeProjectFromArray(project)
-    
+
 }
 
 let addTodoToDom = (project,todoEntry) => {
