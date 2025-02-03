@@ -1,4 +1,4 @@
-import {updateTodoEntryData,createTodoEntryViaForm,createProject,getProjectFormData,getProjectIdCounter} from "./script.js";
+import {updateTodoEntryData,createTodoEntryViaForm,createProject,getProjectFormData,getProjectIdCounter,removeEntryFromArray} from "./script.js";
 export {addProjectToDom,addTodoToDom,toggleFormVisibility,createInitialUI};
 
 
@@ -73,7 +73,7 @@ let addTodoToDom = (project,todoEntry) => {
 
     let deleteButton = document.createElement("Button")
     deleteButton.textContent = "Delete"
-    deleteButton.addEventListener("click", () => {removeDivFromDOM(todoEntry.entryId)})
+    deleteButton.addEventListener("click", () => {/*console.log("Project: "+project.title+" todoEntry:" + todoEntry.title)*/removeEntry(project,todoEntry)})
     div.appendChild(deleteButton)
 
     let showFullTodoButton = document.createElement("Button")
@@ -82,9 +82,16 @@ let addTodoToDom = (project,todoEntry) => {
     div.appendChild(showFullTodoButton)
 }
 
-let removeDivFromDOM = (divID) => {
-    let div = document.querySelector("#entry"+divID)
+let removeDivFromDOM = (project,todoEntry) => {
+    let div = document.querySelector(".project-"+project.projectId+" > #entry"+todoEntry.entryId)
     div.remove()
+   
+
+}
+
+let removeEntry = (project,todoEntry) => {
+    removeDivFromDOM(project,todoEntry)
+    removeEntryFromArray(project,todoEntry)
 }
 
 let toggleFormVisibility = () => {

@@ -1,6 +1,6 @@
 import "./style.css";
 import {addProjectToDom, addTodoToDom,showForm,createInitialUI} from "./domlogic.js";
-export {updateTodoEntryData,createTodoEntryViaForm,getProjectFormData,getProjectIdCounter}
+export {updateTodoEntryData,createTodoEntryViaForm,getProjectFormData,getProjectIdCounter,removeEntryFromArray}
 let createInitalDefaultProject = () => {
     let project = createProject("Default")
     project.default = true 
@@ -87,11 +87,24 @@ let getProjectFormData = () => {
     return createProject(projectForm.title.value)
 }
 
+let removeEntryFromArray = (project,todoEntry) => {
+    let index = 0
+    console.log("Before: "+project.projectContentArray.length)
+    for(let entry of project.projectContentArray){
+        if(entry === todoEntry){
+            project.projectContentArray.splice(index,1)
+            console.log("After: "+project.projectContentArray.length)
+            return
+        }
+        index++ 
+    }
+   
+
+}
+
 let savePageContent = () => {
     localStorage.setItem("projectArray",JSON.stringify(projectArray))
 }
-
-
 
 let restorePageContent = () => { 
     let pageContent = localStorage.getItem("projectArray")
