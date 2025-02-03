@@ -15,3 +15,15 @@ form{
     left:50%;
     top:50%;
 }
+
+.project-title{
+    font-weight: 800;
+    font-size: 20px;
+}
+
+button{
+    border-style:none;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 2px;
+}

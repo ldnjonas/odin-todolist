@@ -11,6 +11,7 @@ let addProjectToDom = (project) => {
     div.classList.add("project-"+project.projectId)
     
     let p = document.createElement("p")
+    p.classList.add("project-title")
     p.textContent = project.title
 
     projectContainer.appendChild(div)
@@ -71,13 +72,40 @@ let addTodoToDom = (project,todoEntry) => {
     div.append(bottomContentPart)
     for(let property in todoEntry){
         if(property === "entryId"){continue}
-        let p = document.createElement("p")
-        p.textContent = `${property}: ${todoEntry[property]}`
-        p.id = "entry"+todoEntry.entryId+"-"+"field"+fieldId++
+        //let p = document.createElement("p")
+        //p.textContent = `${property[0].toUpperCase()}${property.slice(1)}: ${todoEntry[property]}`
+        //p.id = "entry"+todoEntry.entryId+"-"+"field"+fieldId++
+        let line = document.createElement("p")
+        let key = document.createElement("span")
+        let value = document.createElement("span")
+        
+        line.id = "entry"+todoEntry.entryId+"-"+"field"+fieldId++ 
+        key.classList.add("key")
+        value.classList.add("value")
+
+        
+        key.textContent = `${property[0].toUpperCase()}${property.slice(1)}: `
+        key.style.fontWeight = "800"
+
+        value.textContent = `${todoEntry[property]}`
+        
+        line.append(key)
+        line.append(value)
+
+        
+
+
+
         if(property === "title" || property === "dueDate"){
-            upperContentPart.append(p)
+            //upperContentPart.append(p)
+
+            upperContentPart.append(line)
+
         }else{
-            bottomContentPart.append(p)
+            //bottomContentPart.append(p)
+
+            upperContentPart.append(line)
+
         }
     }
 
@@ -159,8 +187,15 @@ let updateTodoOnDOM = (todoEntry) => {
     let fieldId = 0
     for(let property in todoEntry){
         if(property === "entryId"){continue}        
-        let p = document.querySelector("#entry"+todoEntry.entryId+"-"+"field"+fieldId++)
-        p.textContent = `${property}: ${todoEntry[property]}`
+        // let key = document.querySelector("#entry"+todoEntry.entryId+"-"+"field"+fieldId++)
+        let key = document.querySelector("#entry"+todoEntry.entryId+"-"+"field"+fieldId +" > .key")
+        let value = document.querySelector("#entry"+todoEntry.entryId+"-"+"field"+fieldId +" > .value")
+        key.style.fontWeight = "800"
+
+
+        key.textContent = `${property[0].toUpperCase()}${property.slice(1)}: `
+        value.textContent = `${todoEntry[property]}`
+        fieldId++
     }
 }
 
