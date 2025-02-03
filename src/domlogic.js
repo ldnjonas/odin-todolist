@@ -1,4 +1,4 @@
-import {updateTodoEntryData,createTodoEntryViaForm,createProject,getProjectFormData,getProjectIdCounter,removeEntryFromArray} from "./script.js";
+import {updateTodoEntryData,createTodoEntryViaForm,createProject,getProjectFormData,getProjectIdCounter,removeEntryFromArray,removeProjectFromArray} from "./script.js";
 export {addProjectToDom,addTodoToDom,toggleFormVisibility,createInitialUI};
 
 
@@ -20,6 +20,20 @@ let addProjectToDom = (project) => {
     addTodoButton.textContent = "Add new Todo"
     addTodoButton.addEventListener("click", () => {createNewTodoEntryForm(project)})
     div.append(addTodoButton)
+
+    let removeProjectButton = document.createElement("button")
+    removeProjectButton.classList.add("remove-project-btn")
+    removeProjectButton.textContent = "Remove Project"
+    removeProjectButton.addEventListener("click", () => {removeProjectFromDom(project)})
+    div.append(removeProjectButton)
+
+    
+}
+
+let removeProjectFromDom = (project) => {
+    let projectOnDom = document.querySelector(".project-"+project.projectId)
+    projectOnDom.remove()
+    removeProjectFromArray(project)
     
 }
 

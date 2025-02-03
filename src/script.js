@@ -1,6 +1,6 @@
 import "./style.css";
 import {addProjectToDom, addTodoToDom,showForm,createInitialUI} from "./domlogic.js";
-export {updateTodoEntryData,createTodoEntryViaForm,getProjectFormData,getProjectIdCounter,removeEntryFromArray}
+export {updateTodoEntryData,createTodoEntryViaForm,getProjectFormData,getProjectIdCounter,removeEntryFromArray,removeProjectFromArray}
 let createInitalDefaultProject = () => {
     let project = createProject("Default")
     project.default = true 
@@ -98,8 +98,11 @@ let removeEntryFromArray = (project,todoEntry) => {
         }
         index++ 
     }
-   
+}
 
+let removeProjectFromArray = (project) => {
+    projectArray.splice(projectArray.indexOf(project),1)
+    savePageContent()
 }
 
 let savePageContent = () => {
